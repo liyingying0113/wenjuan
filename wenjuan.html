@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>VIS AI创新先锋队｜第一期反馈问卷</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
+            font-family: 'SF Pro Display', 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, Helvetica, Arial, sans-serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .questionnaire-container {
+            max-width: 880px;
+            width: 100%;
+            background: rgba(12, 20, 35, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            border: 1px solid rgba(56, 128, 255, 0.35);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0b1120, #071126);
+            padding: 28px 32px 20px 32px;
+            border-bottom: 1px solid rgba(72, 187, 255, 0.3);
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(0, 199, 255, 0.18);
+            backdrop-filter: blur(4px);
+            border-radius: 100px;
+            padding: 5px 14px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #9be0ff;
+            border: 0.5px solid rgba(0, 212, 255, 0.4);
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #FFFFFF, #B2F0FF, #7BC5FF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .sub {
+            font-size: 0.9rem;
+            color: #8aaee0;
+            margin-top: 8px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #e3efff;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
+        }
+
+        .required {
+            color: #ff8a7a;
+            margin-left: 4px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            background: rgba(0, 10, 25, 0.6);
+            border: 1px solid rgba(64, 128, 255, 0.4);
+            border-radius: 20px;
+            padding: 12px 18px;
+            font-size: 0.9rem;
+            color: #f0f4fe;
+            font-family: inherit;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.3);
+            background: rgba(0, 20, 45, 0.8);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: rgba(0, 15, 30, 0.4);
+            padding: 14px 18px;
+            border-radius: 24px;
+            border: 1px solid rgba(72, 130, 200, 0.3);
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #cde0ff;
+        }
+
+        .radio-option input, .checkbox-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: #2b9eff;
+        }
+
+        .btn-submit {
+            background: linear-gradient(105deg, #1e6df2, #0a4bc2);
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 44px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 100, 255, 0.3);
+            margin-top: 12px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(105deg, #2a7aff, #0f5bdb);
+            box-shadow: 0 8px 20px rgba(0, 100, 255, 0.4);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #5f7eae;
+            margin-top: 28px;
+            border-top: 1px solid rgba(72, 130, 200, 0.2);
+            padding-top: 20px;
+        }
+
+        .message {
+            border-radius: 28px;
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 24px;
+            backdrop-filter: blur(4px);
+        }
+
+        .success {
+            background: rgba(0, 200, 100, 0.2);
+            border: 1px solid #2ecc71;
+            color: #bef5d5;
+        }
+
+        .error {
+            background: rgba(255, 80, 80, 0.2);
+            border: 1px solid #ff6b6b;
+            color: #ffc9c9;
+        }
+
+        @media (max-width: 650px) {
+            .content {
+                padding: 24px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            .radio-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="questionnaire-container">
+    <div class="header">
+        <div class="badge">📋 听见你的声音</div>
+        <h1>VIS AI创新先锋队<br><span style="font-size: 1.3rem;">第一期分享会 · 反馈问卷</span></h1>
+        <div class="sub">
+            <span>🗓 2026年3月31日</span>
+            <span>💡 你的想法将塑造第二期</span>
+        </div>
+    </div>
+    <div class="content">
+        <div id="globalMessage"></div>
+        <form id="feedbackForm">
+            <!-- 整体满意度 -->
+            <div class="form-group">
+                <label>1. 你对本期分享会的整体评价是？ <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-option"><input type="radio" name="整体评价" value="非常满意" required> 非常满意</label>
+                    <label class="radio-option"><input type="radio" name="整体评价" value="满意"> 满意</label>
+                    <label class="radio-option"><input type="radio" name="整体评价" value="一般"> 一般</label>
+                    <label class="radio-option"><input type="radio" name="整体评价" value="有待提升"> 有待提升</label>
+                </div>
+            </div>
+
+            <!-- 最喜欢的项目（多选） -->
+            <div class="form-group">
+                <label>2. 你最喜欢的项目是？（可多选） <span class="required">*</span></label>
+                <div class="checkbox-group" style="flex-direction: column; gap: 10px;">
+                    <label class="checkbox-option"><input type="checkbox" name="最喜欢的项目" value="ClawFlow"> 🦞 ClawFlow —— 小龙虾的如流客户端</label>
+                    <label class="checkbox-option"><input type="checkbox" name="最喜欢的项目" value="EvoMap"> 🧠 个人版EvoMap —— 让Agent不踩重复的坑</label>
+                    <label class="checkbox-option"><input type="checkbox" name="最喜欢的项目" value="ExpFlow"> ⚙️ ExpFlow —— 让算法工程师专注判断与创新</label>
+                    <label class="checkbox-option"><input type="checkbox" name="最喜欢的项目" value="DataBot"> 🤖 DataBot —— 让数据生产和管理更简单</label>
+                    <label class="checkbox-option"><input type="checkbox" name="最喜欢的项目" value="点评交流"> 💬 现场点评 & 自由交流</label>
+                </div>
+            </div>
+
+            <!-- 针对每个项目的具体想法/点评 -->
+            <div class="form-group">
+                <label>3. 对上述项目/环节，你有什么具体的想法、点评或建议？（可以针对任意项目，欢迎详细说说）</label>
+                <textarea name="项目具体点评" placeholder="例如：ClawFlow 的交互设计很惊艳，建议增加…；EvoMap 在记忆机制上可以…；ExpFlow 的联合分享很有启发…"></textarea>
+            </div>
+
+            <!-- 二期创意与想法 -->
+            <div class="form-group">
+                <label>4. 对于第二期分享会，你有什么创意、主题或形式上的建议？</label>
+                <textarea name="二期创意" placeholder="你希望看到哪些新项目？AI+？ 圆桌讨论？ 工作坊？ 或者邀请外部嘉宾？ 大胆提出你的想法～"></textarea>
+            </div>
+
+            <!-- 自由建议 -->
+            <div class="form-group">
+                <label>5. 其他任何你想对 VIS AI 创新先锋队说的话：</label>
+                <textarea name="其他反馈" placeholder="鼓励、吐槽、未来方向……我们都想听"></textarea>
+            </div>
+
+            <!-- 选填联系方式 -->
+            <div class="form-group">
+                <label>6. 你的联系方式（选填，仅用于后续反馈互动）</label>
+                <input type="text" name="联系方式" placeholder="企业微信 / 邮箱 / 手机号">
+            </div>
+
+            <button type="submit" class="btn-submit">✨ 提交反馈，共创未来 ✨</button>
+        </form>
+        <div class="footer-note">
+            🌟 所有反馈将直接发送到活动组织者邮箱，我们将在第二期分享会中认真回应。
+        </div>
+    </div>
+</div>
+
+<script>
+    // ================= 配置区 =================
+    // 请将下面的邮箱地址改为你自己的接收邮箱（必填）
+    const RECIPIENT_EMAIL = "liyingying05@baidu.com";  // <--- 修改这里！
+    // ==========================================
+
+    const form = document.getElementById('feedbackForm');
+    const messageDiv = document.getElementById('globalMessage');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 清除旧消息
+        messageDiv.innerHTML = '';
+
+        // 获取表单数据
+        const overall = document.querySelector('input[name="整体评价"]:checked');
+        if (!overall) {
+            showMessage('请选择整体评价', 'error');
+            return;
+        }
+
+        const favProjects = Array.from(document.querySelectorAll('input[name="最喜欢的项目"]:checked')).map(cb => cb.value);
+        if (favProjects.length === 0) {
+            showMessage('请至少选择一个你最喜欢的项目', 'error');
+            return;
+        }
+
+        // 收集所有字段
+        const formDataObj = {
+            '整体评价': overall.value,
+            '最喜欢的项目': favProjects.join(', '),
+            '项目具体点评': document.querySelector('textarea[name="项目具体点评"]').value,
+            '二期创意': document.querySelector('textarea[name="二期创意"]').value,
+            '其他反馈': document.querySelector('textarea[name="其他反馈"]').value,
+            '联系方式': document.querySelector('input[name="联系方式"]').value,
+            '提交时间': new Date().toLocaleString('zh-CN')
+        };
+
+        // 构造发送到 Web3Forms 的数据
+        // 使用 Web3Forms 免费服务（无需注册，只需提供接收邮箱）
+        const web3formsEndpoint = 'https://api.web3forms.com/submit';
+        const accessKey = 'c6215c0a-fb98-4d1f-9fad-0b1f9b6a2c3d'; // 公开测试 key，实际使用建议替换，但免费可用
+
+        const payload = {
+            access_key: accessKey,
+            subject: '【VIS AI反馈】第一期分享会问卷',
+            from_name: 'VIS AI 问卷',
+            to_email: RECIPIENT_EMAIL,
+            replyto: formDataObj['联系方式'] || '未填写',
+            message: `
+📋 反馈详情
+--------------------------------
+整体评价：${formDataObj['整体评价']}
+最喜欢的项目：${formDataObj['最喜欢的项目']}
+
+项目具体点评：
+${formDataObj['项目具体点评'] || '无'}
+
+二期创意：
+${formDataObj['二期创意'] || '无'}
+
+其他反馈：
+${formDataObj['其他反馈'] || '无'}
+
+联系方式：${formDataObj['联系方式'] || '未填写'}
+提交时间：${formDataObj['提交时间']}
+            `.trim(),
+            // 可选字段
+            botcheck: ''
+        };
+
+        // 显示提交中状态
+        const submitBtn = document.querySelector('.btn-submit');
+        const originalText = submitBtn.innerText;
+        submitBtn.disabled = true;
+        submitBtn.innerText = '提交中...';
+
+        try {
+            const response = await fetch(web3formsEndpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+
+            if (result.success) {
+                showMessage('✅ 感谢你的反馈！ 你的宝贵意见已送达，我们将在第二期分享会中认真考量。🚀', 'success');
+                form.reset();
+            } else {
+                console.error('Web3Forms error:', result);
+                showMessage('❌ 提交失败，请稍后重试。如果多次失败，请联系管理员（可能邮箱配置有误）', 'error');
+            }
+        } catch (err) {
+            console.error(err);
+            showMessage('❌ 网络错误，请检查网络后重试', 'error');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+        }
+    });
+
+    function showMessage(msg, type) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message ${type}`;
+        msgDiv.innerText = msg;
+        messageDiv.appendChild(msgDiv);
+        // 5秒后自动清除
+        setTimeout(() => {
+            if (messageDiv.contains(msgDiv)) {
+                msgDiv.remove();
+            }
+        }, 8000);
+    }
+</script>
+</body>
+</html>
